@@ -6,6 +6,7 @@ const {
   isInAllowedChannel,
   allowedChannelId,
 } = require('../../utils/channelCheck');
+const isUserInDatabase = require('../../utils/userCheck');
 
 module.exports = {
   name: 'listteams',
@@ -16,6 +17,13 @@ module.exports = {
     if (!allowedChannel) {
       interaction.reply(
         `You can only use this command in <#${allowedChannelId}>.`
+      );
+      return;
+    }
+    const isUserInDB = await isUserInDatabase(interaction.user.id);
+    if (!isUserInDB) {
+      interaction.reply(
+        `Error! You did not register in the studython. Contact an admin if this is wrong.`
       );
       return;
     }

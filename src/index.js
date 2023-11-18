@@ -52,7 +52,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
         // Get the designated channel by ID
         const designatedChannel = client.channels.cache.get(
-          '1167161954352246799'
+          '1175404975258615819'
         );
         if (designatedChannel) {
           // Send a message to the designated channel about the session being stopped

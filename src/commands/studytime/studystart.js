@@ -7,7 +7,7 @@ const {
   isInAllowedChannel,
   allowedChannelId,
 } = require('../../utils/channelCheck');
-
+const isUserInDatabase = require('../../utils/userCheck');
 // Connecting to the MongoDB database using mongoose.
 const mongodbUrl = process.env.MONGODB_URI;
 
@@ -26,6 +26,14 @@ module.exports = {
     if (!allowedChannel) {
       interaction.reply(
         `You can only use this command in <#${allowedChannelId}>.`
+      );
+      return;
+    }
+
+    const isUserInDB = await isUserInDatabase(interaction.user.id);
+    if (!isUserInDB) {
+      interaction.reply(
+        `Error! You did not register in the studython. Contact an admin if this is wrong.`
       );
       return;
     }

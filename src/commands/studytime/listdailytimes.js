@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const msToHumanTime = require('../../utils/msToHumanTime');
 const { User } = require('../../utils/schemas');
 const isAdmin = require('../../utils/adminCheck');
+const isUserInDatabase = require('../../utils/userCheck');
 
 module.exports = {
   name: 'listdailytimes',
